@@ -33,34 +33,34 @@
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Информация
+                                information
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
-                                <li><a class="dropdown-item  text-white" href="#">Контактная информация</a></li>
-                                <li><a class="dropdown-item  text-white" href="{% url "main:about" %}">Про нас</a></li>
+                                <li><a class="dropdown-item  text-white" href="#">delivery and payments</a></li>
+                                <li><a class="dropdown-item  text-white" href="#">contact us</a></li>
+                                <li><a class="dropdown-item  text-white" href="{% url "main:about" %}">about us</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href=""carts/cart.html">Корзина</a>
+                            <a class="nav-link  text-white" href=""carts/cart.html">shopping cart</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href=""users/login.html">Войти</a>
+                            <a class="nav-link  text-white" href=""users/login.html">log in</a>
                         </li>
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Мой профиль
+                                Profile
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href=""carts/cart.html"">Корзина</a></li>
-                                <li><a class="dropdown-item  text-white" href=""users/profile.html">Личный кабинет</a>
+                                <li><a class="dropdown-item  text-white" href=""carts/cart.html"">shopping cart</a></li>
+                                <li><a class="dropdown-item  text-white" href=""users/profile.html">profile</a>
                                 </li>
-                                <li><a class="dropdown-item  text-white" href="#">Админ панель</a></li>
+                                <li><a class="dropdown-item  text-white" href="{% url "admin:index" %}">admin</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item  text-white" href="#">Выйти</a></li>
+                                <li><a class="dropdown-item  text-white" href="#">log out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -84,14 +84,11 @@
                         <img class="mx-1" src="{% static "deps/icons/grid-fill.svg" %}" alt="Catalog Icon" width="16"
                             height="16">
                     </button>
+
                     <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                    <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Все товары</a></li>
-                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Кухня</a></li>
-                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Спальня</a></li>
-                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Гостинная</a></li>
-                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Офис</a></li>
-                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Фурнитура</a></li>
-                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">Декор</a></li>
+                        {% for category in  categoriess %}
+                        <li><a class="dropdown-item text-white" href="{%url "catalog:index" %}">{{category.name}}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <!-- Значек корзины, вызывает модальное окно -->

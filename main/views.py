@@ -1,14 +1,17 @@
+import select
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from goods.models import categories
 
 # Create your views here.
 
 
 def index(request):
+    categoriess = categories.objects.all()
     context = {
         "title": "Home - main page",
-        "content": "FURNITURE HOME"
+        "content": "FURNITURE HOME",
+        "categoriess": categoriess
     }
     return render(request, 'main/index.html', context)
 
