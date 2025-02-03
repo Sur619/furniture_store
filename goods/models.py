@@ -28,6 +28,7 @@ class products(models.Model):
 
     class Meta:
         db_table = "product"
+        ordering = ('id',)
 
 
     def __str__(self):
