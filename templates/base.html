@@ -48,7 +48,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <!-- Исправлены кавычки -->
+                            
                             <a class="nav-link text-white" href="#">Shopping Cart</a>
                         </li>
                         <li class="nav-item">
@@ -115,7 +115,8 @@
                     <!-- Empty block for custom content -->
                 </div>
                 <div class="col-lg-10">
-                    {% block content %}
+                    {% include "includes/notifications.html" %}
+                    {% block content %} 
                     {% endblock content %}
                 </div>
             </div>
