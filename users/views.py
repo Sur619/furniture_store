@@ -1,8 +1,10 @@
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from users.forms import UserLoginForm, UserRegistrationForm, UserRwgistrationForm
+from traitlets import Instance
+from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm, UserRwgistrationForm
 
 
 # Create your views here.
@@ -26,6 +28,8 @@ def login(request):
     return render(request, "users/login.html", context)
 
 
+
+@login_required
 def logout(request):
     auth.logout(request)
 
@@ -47,7 +51,18 @@ def registration(request):
     context = {"title": "Home - registration", "form": form}
     return render(request, "users/registration.html", context)
 
-
+@login_required
 def profile(request):
-    context = {"title": "Home - profile"}
+    if request.method == "POST":
+        form = ProfileForm(data=request.POST, Instance=request.user, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return ProfileForm(reverse("user:profile"))
+
+    else:
+        form = ProfileForm(Instance=request.user)
+    context = {
+        'title':"Home-Profile",
+        'forms':form
+    }
     return render(request, "users/profile.html", context)
