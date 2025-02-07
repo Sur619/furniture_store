@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from traitlets import Instance
-from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm, UserRwgistrationForm
+from users.forms import ProfileForm, UserLoginForm, UserRegistrationForm, UserRegistrationForm
 
 
 # Create your views here.
@@ -71,3 +71,8 @@ def profile(request):
         'forms':form
     }
     return render(request, "users/profile.html", context)
+
+
+def users_cart(request):
+    return render(request, 'users/users_cart.html')
+

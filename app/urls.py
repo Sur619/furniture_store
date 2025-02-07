@@ -28,7 +28,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("main.urls", namespace='main')),
     path("catalog/",include("goods.urls", namespace='catalog')),
-    path("user/",include("users.urls", namespace='users')),
+    path("user/",include("users.urls", namespace='user')),
+    path("carts/", include("carts.urls", namespace="carts")),
     
 ]
 

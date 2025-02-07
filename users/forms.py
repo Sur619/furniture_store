@@ -76,7 +76,7 @@ class ProfileForm(UserChangeForm):
         model = User
         fields = (
             "image",
-            "fist_name",
+            "first_name",
             "last_name",
             "username",
             "email",
