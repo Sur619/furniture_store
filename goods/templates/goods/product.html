@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
+
+{% block modal_cart %}
+{% include "includes/cart_button.html " %}
+{% endblock modal_cart %}
+
 <div class="container mt-5">
     <div class="card mb-4 custom-shadow">
         <div class="row">

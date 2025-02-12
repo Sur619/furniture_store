@@ -1,12 +1,19 @@
-from tkinter import CASCADE
 from django.db import models
-
 from goods.models import products
+
 from users.models import User
 
-# Create your models here.
 
-
+class CartQueryset(models.QuerySet):
+    
+    def total_price(self):
+        return sum(cart.products_price() for cart in self)
+    
+    def total_quantity(self):
+        if self:
+            return sum(cart.quantity for cart in self)
+        return 0
+    
 class Cart(models.Model):
 
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
@@ -18,21 +25,14 @@ class Cart(models.Model):
     class Meta:
         db_table = "cart"
 
+    objects = CartQueryset().as_manager()
 
     def products_price(self):
-        if self.discount:
-            return round(self.sell_price() * self.quantity,2)
+        return round(self.product.sell_price() * self.quantity, 2)
         
 
     def __str__(self):
-        return f"Cart of {self.username} | product {self.product} | quantuty {self.quantity}"
+        return f"Cart of {self.user.username} | product {self.product} | quantuty {self.quantity}"
 
 
-class CartQuerySet(models.QuerySet):
-    def total_price(self):
-        return sum(cart.product_price() for cart in self)
-
-    def total_quantity(self):
-        if self:
-            return sum(cart.quantity for cart in self)
-        return 0
+    

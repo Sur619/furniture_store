@@ -59,13 +59,13 @@ def registration(request):
 @login_required
 def profile(request):
     if request.method == "POST":
-        form = ProfileForm(data=request.POST, Instance=request.user, files=request.FILES)
+        form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
             return ProfileForm(reverse("user:profile"))
 
     else:
-        form = ProfileForm(Instance=request.user)
+        form = ProfileForm(instance=request.user)
     context = {
         'title':"Home-Profile",
         'forms':form
